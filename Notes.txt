@@ -1,0 +1,6 @@
+For customized report refer ---> https://github.com/WasiqB/multiple-cucumber-html-reporter
+
+run on terminal
+
+ npm install multiple-cucumber-html-reporter --save-dev  --> will install dependencies
+ 
