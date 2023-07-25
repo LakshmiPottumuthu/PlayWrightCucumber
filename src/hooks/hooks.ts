@@ -20,11 +20,11 @@ BeforeAll(async function(){
 });
 
 Before(async function({ pickle }) {
-    const scenarioName = pickle.name + pickle.id
+    const scenarioName = pickle.name 
     context = await browser.newContext();
     page = await context.newPage();
     fixture.page = page;
-    //fixture.logger = createLogger(options(scenarioName))
+    fixture.logger = createLogger(options(scenarioName))
 })
 
 After(async function ({pickle,result}){
@@ -44,7 +44,6 @@ After(async function ({pickle,result}){
 AfterAll(async function (){
 
     await browser.close();
-    //await fixture.logger.close();
   
     
 })

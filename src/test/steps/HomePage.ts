@@ -7,16 +7,16 @@ let assert: Assert;
 
 setDefaultTimeout(60 * 1000 * 2)
 
-  Given('I am on page {string}', async function (url) {
-   await fixture.page.goto(url);
-   //fixture.logger.info("Navigated to the application")
+Given('I am on page {string}', async function (url) {
+   await fixture.page.goto(process.env.BASEURL+url);
+   fixture.logger.info("Navigated to the application")
   });
 
 
 
   When('I navigate to page {string}', async function (jobsUrl) {
-    await fixture.page.goto(jobsUrl)
-    //fixture.logger.info("Navigated to the jobs page")
+    await fixture.page.goto(process.env.BASEURL+jobsUrl)
+    fixture.logger.info("Navigated to the jobs page")
   });
 
        
@@ -44,7 +44,7 @@ setDefaultTimeout(60 * 1000 * 2)
 
 
   Then('I should be able to see in browser URL {string}', async function (url) {
-    await expect(fixture.page).toHaveURL(url)
+    await expect(fixture.page).toHaveURL(process.env.BASEURL+url)
     
   });
 
@@ -152,12 +152,16 @@ When('I select the option {string} from {string} field', async function (optionV
 });
 
 Given('I login as a client',async function () {
-  await fixture.page.goto("https://www-master.ci.resume-library.com/hiring/login");
+  await fixture.page.goto(process.env.BASEURL+"/hiring/login");
   await fixture.page.locator("input#email").type("testers+client@resume-library.com");
   await fixture.page.locator("input[name='pass']").type("rltest01");
   await fixture.page.locator("button#client-login-submit-btn").click();
  
 });
+
+
+
+
 
 // When('I switch tab', async function () {
 
