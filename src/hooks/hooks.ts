@@ -10,8 +10,10 @@ let browser : Browser;
 let page: Page;
 let context : BrowserContext
 let logger : Logger
+let videoPath: string;
+let img: Buffer;
 
-
+const fs = require("fs-extra");
 
 BeforeAll(async function(){
     getEnv();
@@ -29,11 +31,13 @@ Before(async function({ pickle }) {
 
 After(async function ({pickle,result}){
 
+  
     //screenshot
     console.log(result?.status);
     if (result?.status == Status.FAILED) {
-        const img = await fixture.page.screenshot({ path: `./test-results/screenshots/${pickle.name}.png`, type: "png" })
-        await this.attach(img,"img/png");
+        img = await fixture.page.screenshot({ path: `./test-results/screenshots/${pickle.name}.png`, type: "png" })
+        await this.attach(img,"img/png");     
+        
     }
   
     await page.close();

@@ -38,11 +38,11 @@ Feature: Candidate Home Home
 
   # @homeClearRecentSearches
   # Scenario: Search for a job and verify clear recent searches
-  #   When  I navigate to page "https://www-master.ci.resume-library.com/jobs/sales-in-10001?r=20"
-  #   Then  I am on page
+  #   When  I navigate to page "/jobs/sales-in-10001?r=20"
+  #   Given I am on page "/"
   #   And   I should see text "Recent Searches"
   #   And   I click on recent searches link
-  #   Then  I should be able to see in browser URL "https://www-master.ci.resume-library.com/"
+  #   Then  I should be able to see in browser URL "/"
   #   And   I click on clear recent searches link
   #   And   I confirm browser popup
    

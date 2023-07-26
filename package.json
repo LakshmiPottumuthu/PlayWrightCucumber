@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "pretest": "npx ts-node src/helper/report/report.ts",
+    "pretest": "npx ts-node src/helper/report/init.ts",
     "test": "cross-env ENV=staging FORCE_COLOR=0 cucumber-js --config=config/cucumber.js || true",
-    "posttest": "npx ts-node src/helper/report/report.ts",
-    "test:failed": "cucumber-js -p rerun @FailedTestCases.txt"
+    "posttest": "npx ts-node src/helper/report/report.ts"
+
   },
   "keywords": [
     "cucumber",

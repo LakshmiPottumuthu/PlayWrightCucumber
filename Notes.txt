@@ -1,5 +1,7 @@
 For customized report refer ---> https://github.com/WasiqB/multiple-cucumber-html-reporter
 
+    "test:failed": "cucumber-js -p rerun @FailedTestCases.txt"
+
 run on terminal
 
 sudo apt-get install npm

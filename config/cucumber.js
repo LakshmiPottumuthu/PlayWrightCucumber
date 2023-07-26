@@ -1,6 +1,6 @@
 module.exports = {
     default: {
-        tags: process.env.npm_config_TAGS,
+        tags: process.env.npm_config_TAGS || "",
         formatOptions: {
             snippetInterface: "async-await"
         },
@@ -22,27 +22,29 @@ module.exports = {
             "json:test-results/cucumber-report.json",
             "rerun:@FailedTestCases.txt"
         ],
-        parallel: 5
-    },
-    rerun: {
-        formatOptions: {
-            snippetInterface: "async-await"
-        },
-        publishQuiet: true,
-        dryRun: false,
-        require: [
-            "src/test/steps/*.ts",
-            "src/hooks/hooks.ts"
-        ],
-        requireModule: [
-            "ts-node/register"
-        ],
-        format: [
-            "progress-bar",
-            "html:test-results/cucumber-report.html",
-            "json:test-results/cucumber-report.json",
-            "rerun:@FailedTestCases.txt"
-        ],
-        parallel: 5
+        parallel: 5,
+        retry : 2
     }
+    //,
+    // rerun: {
+    //     formatOptions: {
+    //         snippetInterface: "async-await"
+    //     },
+    //     publishQuiet: true,
+    //     dryRun: false,
+    //     require: [
+    //         "src/test/steps/*.ts",
+    //         "src/hooks/hooks.ts"
+    //     ],
+    //     requireModule: [
+    //         "ts-node/register"
+    //     ],
+    //     format: [
+    //         "progress-bar",
+    //         "html:test-results/cucumber-report.html",
+    //         "json:test-results/cucumber-report.json",
+    //         "rerun:@FailedTestCases.txt"
+    //     ],
+    //     parallel: 5
+    // }
 }
