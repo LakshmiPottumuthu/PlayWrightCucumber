@@ -2,13 +2,22 @@ For customized report refer ---> https://github.com/WasiqB/multiple-cucumber-htm
 
 run on terminal
 
- npm install multiple-cucumber-html-reporter --save-dev  --> will install dependencies
+sudo apt-get install npm
 
- npm i dotenv -D
+npm i @cucumber/cucumber -D
 
- npm i cross-env -D
+npm install -D ts-node
 
- npm i winston -D
+npm i @cucumber/cucumber -D
 
- https://testerops.com/2023/03/20/logging-best-practices-in-test-automation/  -- Logging Best Practices In Test Automation
+
+npm install multiple-cucumber-html-reporter --save-dev  --> will install dependencies
+
+npm i dotenv -D
+
+npm i cross-env -D
+
+npm i winston -D
+
+https://testerops.com/2023/03/20/logging-best-practices-in-test-automation/  -- Logging Best Practices In Test Automation
  

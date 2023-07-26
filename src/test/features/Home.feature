@@ -10,7 +10,7 @@ Feature: Candidate Home Home
     And   I fill in search title field with "<Title>"
     And   I fill in search location with "<Location>"
     And   I select "<Distance>" from search distance
-    #And   I click on find jobs button
+    And   I click on find jobs button
     Then  I should be able to see in browser URL "/jobs/sales-in-10001?r=20"
     And   I should see text H one tag "Sales jobs in 10001"
     And   the title field should contain "<Title1>"
@@ -128,16 +128,16 @@ Feature: Candidate Home Home
   #     |   Manufacturing      | South Dakota | Denver, CO | Administrative Assistant |
 
   
-  # @verifySector @ReleaseRegression2
+  # @verifySector
   # Scenario: Verify results by changing sector and location
   #   Given I login as a client
-  #   Then  I navigate to page "https://www-master.ci.resume-library.com/hiring/demographics"
+  #   Then  I navigate to page "/hiring/demographics"
   #   And   I should see text "Explore candidates from every sector across the U.S."
   #   When  I select the option "Accounting" from "Sector" field
   #   Then  I select the option "California" from "Status" field
   #   And   I confirm browser popup
   #   Then  I should see text "Resume Matches"
   #   When  I click on "Preview Resume"
-  #   And   I switch tab
+   # And   I switch tab
   #   #Then  I should be able to see in browser URL "Client Resume View Candidate Profile" or I should see "Client Resume Search"
   

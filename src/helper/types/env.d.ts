@@ -6,6 +6,8 @@ declare global {
             BROWSER: "chrome" | "firefox" | "webkit",
             ENV: "staging" | "prod",
             BASEURL: string,
+            ClientEmailAddress : string,
+            ClientPassword : string,
             HEAD: "true" | "false"
         }
     }

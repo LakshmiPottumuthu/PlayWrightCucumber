@@ -153,8 +153,8 @@ When('I select the option {string} from {string} field', async function (optionV
 
 Given('I login as a client',async function () {
   await fixture.page.goto(process.env.BASEURL+"/hiring/login");
-  await fixture.page.locator("input#email").type("testers+client@resume-library.com");
-  await fixture.page.locator("input[name='pass']").type("rltest01");
+  await fixture.page.locator("input#email").type(process.env.ClientEmailAddress);
+  await fixture.page.locator("input[name='pass']").type(process.env.ClientPassword);
   await fixture.page.locator("button#client-login-submit-btn").click();
  
 });
