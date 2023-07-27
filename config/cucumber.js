@@ -5,12 +5,12 @@ module.exports = {
             snippetInterface: "async-await"
         },
         paths: [
-            "src/test/features/"
+            "src/test/featureFiles/web/Candidate"
         ],
         publishQuiet: true,
         dryRun: false,
         require: [
-            "src/test/steps/*.ts",
+            "src/test/stepDefinitions/Web/Candidate/*.ts",
             "src/hooks/hooks.ts"
         ],
         requireModule: [
@@ -23,7 +23,7 @@ module.exports = {
             "rerun:@FailedTestCases.txt"
         ],
         parallel: 5,
-        retry : 2
+        retry : 1
     }
     //,
     // rerun: {

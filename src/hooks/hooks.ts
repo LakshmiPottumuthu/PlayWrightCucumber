@@ -10,8 +10,6 @@ let browser : Browser;
 let page: Page;
 let context : BrowserContext
 let logger : Logger
-let videoPath: string;
-let img: Buffer;
 
 const fs = require("fs-extra");
 
@@ -31,18 +29,28 @@ Before(async function({ pickle }) {
 
 After(async function ({pickle,result}){
 
-  
+    let videoPath: string;
+    let img: Buffer;
     //screenshot
     console.log(result?.status);
     if (result?.status == Status.FAILED) {
         img = await fixture.page.screenshot({ path: `./test-results/screenshots/${pickle.name}.png`, type: "png" })
-        await this.attach(img,"img/png");     
+        await this.attach(img,"img/png");
+        videoPath = await fixture.page.video().path();
         
     }
   
     await page.close();
     await context.close();
-    
+    if (result?.status == Status.PASSED) {
+        await this.attach(
+            img, "image/png"
+        );
+        await this.attach(
+            fs.readFileSync(videoPath),
+            'video/webm'
+        );
+    }
 })
 
 AfterAll(async function (){

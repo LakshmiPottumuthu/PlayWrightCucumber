@@ -6,3 +6,4 @@ cucumber-report.html
 assets
 @FailedTestCases.txt
 index.html
+features
