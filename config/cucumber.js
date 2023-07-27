@@ -10,7 +10,7 @@ module.exports = {
         publishQuiet: true,
         dryRun: false,
         require: [
-            "src/test/stepDefinitions/Web/Candidate/*.ts",
+            "src/test/stepDefinitions/Web/*.ts",
             "src/hooks/hooks.ts"
         ],
         requireModule: [
