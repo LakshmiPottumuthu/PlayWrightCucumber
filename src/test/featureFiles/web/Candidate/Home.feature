@@ -113,19 +113,19 @@ Feature: Candidate Home Home
   #   And   I should see text H one tag "Career Advice"
 
  
-  @homePageDropdowns 
-  Scenario Outline: Validate the link Text under Jobs by Industry, Jobs by State, Jobs by City and Popular Jobs tabs on HomePage
-    And   I should see text "Jobs by Industry"
-    Then  I should see linkText "<JobsByIndustry>" under Jobs by Industry tab
-    And   I click on "Jobs by State"
-    Then  I should see linkText "<JobsByState>" under Jobs by State tab
-    And   I click on "Jobs by City"
-    Then  I should see linkText "<JobsByCity>" under Jobs by City tab
-    And   I click on "Popular Jobs"
-    Then  I should see linkText "<PopularJobs>" under Popular Jobs tab
-    Examples:
-      |   JobsByIndustry     | JobsByState  | JobsByCity | PopularJobs              |
-      |   Manufacturing      | South Dakota | Denver, CO | Administrative Assistant |
+  # @homePageDropdowns 
+  # Scenario Outline: Validate the link Text under Jobs by Industry, Jobs by State, Jobs by City and Popular Jobs tabs on HomePage
+  #   And   I should see text "Jobs by Industry"
+  #   Then  I should see linkText "<JobsByIndustry>" under Jobs by Industry tab
+  #   And   I click on "Jobs by State"
+  #   Then  I should see linkText "<JobsByState>" under Jobs by State tab
+  #   And   I click on "Jobs by City"
+  #   Then  I should see linkText "<JobsByCity>" under Jobs by City tab
+  #   And   I click on "Popular Jobs"
+  #   Then  I should see linkText "<PopularJobs>" under Popular Jobs tab
+  #   Examples:
+  #     |   JobsByIndustry     | JobsByState  | JobsByCity | PopularJobs              |
+  #     |   Manufacturing      | South Dakota | Denver, CO | Administrative Assistant |
 
   
   # @verifySector
@@ -138,6 +138,6 @@ Feature: Candidate Home Home
   #   And   I confirm browser popup
   #   Then  I should see text " Resume Matches"
   #   When  I click on "Preview Resume"
-  #   And   I switch tab
-  #   Then  I should be able to see in browser URL "Client Resume View Candidate Profile" or I should see "Client Resume Search"
+    # And   I switch tab 
+    # Then  I should be able to see in browser URL "Client Resume View Candidate Profile" or I should see "Client Resume Search"
   

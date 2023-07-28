@@ -11,7 +11,7 @@ let page: Page;
 let context : BrowserContext
 let logger : Logger
 
-const fs = require("fs-extra");
+
 
 BeforeAll(async function(){
     getEnv();
@@ -20,7 +20,7 @@ BeforeAll(async function(){
 });
 
 Before(async function({ pickle }) {
-    const scenarioName = pickle.name 
+    const scenarioName = pickle.name
     context = await browser.newContext();
     page = await context.newPage();
     fixture.page = page;
@@ -29,28 +29,18 @@ Before(async function({ pickle }) {
 
 After(async function ({pickle,result}){
 
-    let videoPath: string;
-    let img: Buffer;
+
     //screenshot
     console.log(result?.status);
     if (result?.status == Status.FAILED) {
-        img = await fixture.page.screenshot({ path: `./test-results/screenshots/${pickle.name}.png`, type: "png" })
+       const img = await fixture.page.screenshot({ path: `./test-results/screenshots/${pickle.name}.png`, type: "png" })
         await this.attach(img,"img/png");
-        videoPath = await fixture.page.video().path();
         
     }
   
     await page.close();
     await context.close();
-    if (result?.status == Status.PASSED) {
-        await this.attach(
-            img, "image/png"
-        );
-        await this.attach(
-            fs.readFileSync(videoPath),
-            'video/webm'
-        );
-    }
+   
 })
 
 AfterAll(async function (){

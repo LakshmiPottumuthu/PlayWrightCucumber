@@ -23,3 +23,9 @@ npm i winston -D
 
 https://testerops.com/2023/03/20/logging-best-practices-in-test-automation/  -- Logging Best Practices In Test Automation
  
+Things to Implement on Playwright:
+command line arguments
+multiple cucumber html reporter  error
+video
+execuete with single tags
+Github commit issue

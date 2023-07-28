@@ -1,21 +1,24 @@
 import { Given, When, Then,setDefaultTimeout } from '@cucumber/cucumber'
-import { fixture } from "../../../hooks/pageFixture";
+import { fixture } from "../../../../hooks/pageFixture";
 import { expect, Page,BrowserContext } from "@playwright/test";
-import Assert from "../../../wrapper/assert";
+import Assert from "../../../../wrapper/assert";
+import PlaywrightWrapper from '../../../../wrapper/PlaywrightWrappers';
 
 let context : BrowserContext
+let playwrightWrapper: PlaywrightWrapper;
 
 setDefaultTimeout(60 * 1000 * 2)
 
 Given('I am on page {string}', async function (url) {
-   await fixture.page.goto(process.env.BASEURL+url);
+   playwrightWrapper = new PlaywrightWrapper(fixture.page);
    fixture.logger.info("Navigated to the application")
+   playwrightWrapper.goto(process.env.BASEURL+url)
   });
 
 
 
   When('I navigate to page {string}', async function (jobsUrl) {
-    await fixture.page.goto(process.env.BASEURL+jobsUrl)
+    playwrightWrapper.goto(process.env.BASEURL+jobsUrl)
     fixture.logger.info("Navigated to the jobs page")
   });
 
@@ -28,7 +31,7 @@ Given('I am on page {string}', async function (url) {
 
 
   Then('I click on recent searches link', async function () {
-    await fixture.page.locator("//*[@class='recent-searches-desktop-btn']").click()
+    playwrightWrapper.waitAndClick("//*[@class='recent-searches-desktop-btn']")
 
   });
 
@@ -37,7 +40,7 @@ Given('I am on page {string}', async function (url) {
 
   Then('I click on {string}', async function (linkText) {
 
-    await fixture.page.locator("(//*[contains(text(),\"" + linkText + "\")])[1]").click()
+    playwrightWrapper.waitAndClick("(//*[contains(text(),\"" + linkText + "\")])[1]")
 
   });
 
@@ -51,13 +54,13 @@ Given('I am on page {string}', async function (url) {
 
   
     Given('I fill in search title field with {string}', async function (title) {
-      await fixture.page.locator("input[name='q']").type(title);
+      playwrightWrapper.waitAndSendKeys("input[name='q']",title);
     
     });
   
   
     Given('I fill in search location with {string}', async function (location) {
-      await fixture.page.locator("input[name='loc']").type(location);
+      playwrightWrapper.waitAndSendKeys("input[name='loc']",location);
      
     });
   
@@ -69,7 +72,7 @@ Given('I am on page {string}', async function (url) {
 
   
     Given('I click on find jobs button', async function () {
-      await fixture.page.locator("#home-search-submit").click()
+      playwrightWrapper.waitAndClick("#home-search-submit")
      
     });
   
@@ -94,7 +97,7 @@ Given('I am on page {string}', async function (url) {
     });
 
   Then('I move backward one page', async function () {
-     await fixture.page.goBack();
+    playwrightWrapper.navigateBack();
   })
 
 
@@ -134,7 +137,7 @@ Then('I confirm browser popup',async function () {
 
 Then('I click on clear recent searches link', async function () {
  
-  await fixture.page.locator("(//button[text()='Clear recent searches'])[1]").click()
+  playwrightWrapper.waitAndClick("(//button[text()='Clear recent searches'])[1]")
  
 });
 
@@ -152,25 +155,29 @@ When('I select the option {string} from {string} field', async function (optionV
 });
 
 Given('I login as a client',async function () {
-  await fixture.page.goto(process.env.BASEURL+"/hiring/login");
-  await fixture.page.locator("input#email").type(process.env.ClientEmailAddress);
-  await fixture.page.locator("input[name='pass']").type(process.env.ClientPassword);
-  await fixture.page.locator("button#client-login-submit-btn").click();
+  playwrightWrapper.goto(process.env.BASEURL+"/hiring/login");
+  playwrightWrapper.waitAndSendKeys("input#email",process.env.ClientEmailAddress);
+  playwrightWrapper.waitAndSendKeys("input[name='pass']",process.env.ClientPassword);
+  playwrightWrapper.waitAndClick("button#client-login-submit-btn");
  
 });
 
+// Then('I should be able to see in browser URL {string} or I should see {string}',async function (url1,url2) {
+//   const presentURL = fixture.page.url();
+//   let urlFound:boolean = false
+//         if (presentURL.match(process.env.BASEURL+"/hiring/login") || presentURL.match(process.env.BASEURL+"/hiring/login")) {
+//             urlFound = true;
+//             fixture.logger.info("[--->urlFound---->" + urlFound + "<---]");
+//         }
+        
+// })
+
 When('I switch tab', async function () {
-
-  const [newWindow] = await Promise.all([
-    context.waitForEvent("page"),
-    await fixture.page.click("#home")
-])
-await newWindow.waitForLoadState();
+  context.on('page', async page => {
+    await page.waitForLoadState();
+    console.log(await page.title());
+  });
 });
-
-Then('I should be able to see in browser URL {string} or I should see {string}', (s: string, s2: string) => {
-  // Write code here that turns the phrase above into concrete actions
-})
 
 
       

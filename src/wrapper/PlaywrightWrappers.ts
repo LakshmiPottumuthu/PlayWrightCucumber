@@ -18,11 +18,33 @@ export default class PlaywrightWrapper {
         await element.click();
     }
 
-    async navigateTo(link: string) {
-        await Promise.all([
-            this.page.waitForNavigation(),
-            this.page.click(link)
-        ])
+    async navigateBack() {
+        await this.page.goBack( {
+            waitUntil: "domcontentloaded"
+        });
+        
+    }
+    async navigateForward() {
+        await this.page.goBack( {
+            waitUntil: "domcontentloaded"
+        });
+        
+    }
+
+    async waitAndSendKeys(locator: string,text: string) {
+        const element = this.page.locator(locator);
+        await element.waitFor({
+            state: "visible"
+        });
+        await element.type(text);
+    }
+
+    async shouldSeeText(locator: string,text: string) {
+        const element = this.page.locator(locator);
+        await element.waitFor({
+            state: "visible"
+        });
+        await element.type(text);
     }
 
 }
