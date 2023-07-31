@@ -54,13 +54,15 @@ Given('I am on page {string}', async function (url) {
 
   
     Given('I fill in search title field with {string}', async function (title) {
-      playwrightWrapper.waitAndSendKeys("input[name='q']",title);
+     // playwrightWrapper.waitAndSendKeys("input#q",title);
+      await fixture.page.type("input#q",title);
     
     });
   
   
     Given('I fill in search location with {string}', async function (location) {
-      playwrightWrapper.waitAndSendKeys("input[name='loc']",location);
+     // playwrightWrapper.waitAndSendKeys("input#search_loc",location);
+     await fixture.page.type("input#search_loc",location);
      
     });
   

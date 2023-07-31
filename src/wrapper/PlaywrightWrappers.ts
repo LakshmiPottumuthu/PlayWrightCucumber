@@ -1,5 +1,6 @@
 import { Page } from "@playwright/test";
 
+
 export default class PlaywrightWrapper {
 
     constructor(private page: Page) { }
@@ -36,7 +37,7 @@ export default class PlaywrightWrapper {
         await element.waitFor({
             state: "visible"
         });
-        await element.type(text);
+        await element.fill(text);
     }
 
     async shouldSeeText(locator: string,text: string) {
@@ -44,7 +45,7 @@ export default class PlaywrightWrapper {
         await element.waitFor({
             state: "visible"
         });
-        await element.type(text);
+        await element.fill(text);
     }
 
 }
